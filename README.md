@@ -2,6 +2,7 @@
 
 [![GitHub License](https://img.shields.io/github/license/ckatsak/acti-rs)](LICENSE)
 [![deps.rs](https://deps.rs/repo/github/ckatsak/acti-rs/status.svg)](https://deps.rs/repo/github/ckatsak/acti-rs)
+[![Docker Image Version](https://img.shields.io/docker/v/ckatsak/acti-registrant/0.1.0?color=blue&label=ckatsak%2Facti-registrant&logo=docker)](https://hub.docker.com/r/ckatsak/acti-registrant/tags)
 
 ## Build
 
