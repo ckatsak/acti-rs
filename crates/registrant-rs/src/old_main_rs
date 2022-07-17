@@ -1,0 +1,73 @@
+use std::{env, io};
+
+use anyhow::{anyhow, Context, Result};
+use futures::TryFutureExt;
+use tracing::{debug, instrument, trace, Level};
+use tracing_subscriber::{fmt::format::FmtSpan, EnvFilter};
+
+use acticrds::ActiNode;
+use actitopo::{DetectionMode, Topology};
+
+const ACTI_K8S_NODE_NAME_KEY: &str = "ACTI_NODE_NAME";
+const ACTI_K8S_NAMESPACE_KEY: &str = "ACTI_NAMESPACE";
+
+#[derive(Debug, Clone)]
+struct Environment {
+    node_name: String,
+    namespace: String,
+}
+
+impl Environment {
+    #[instrument(level = Level::TRACE)]
+    async fn read() -> Result<Self> {
+        Ok(Self {
+            node_name: env::var(ACTI_K8S_NODE_NAME_KEY).with_context(|| {
+                format!(
+                    "failed to retrieve the value of environment variable {:?}",
+                    ACTI_K8S_NODE_NAME_KEY
+                )
+            })?,
+            namespace: env::var(ACTI_K8S_NAMESPACE_KEY).with_context(|| {
+                format!(
+                    "failed to retrieve the value of environment variable {:?}",
+                    ACTI_K8S_NAMESPACE_KEY
+                )
+            })?,
+        })
+    }
+}
+
+#[instrument(level = Level::TRACE)]
+async fn register(env: Environment) -> Result<()> {
+    let full = Topology::detect(DetectionMode::Full)
+        .with_context(|| "failed to detect the full underlying hardware topology")?;
+    debug!("Full underlying hardware topology has been detected successfully");
+    trace!("{:?}", full);
+    let full = serde_json::to_string(&full).with_context(|| "failed to serialize full Topology")?;
+
+    let isol = Topology::detect(DetectionMode::IsolationBoundariesOnly)
+        .with_context(|| "failed to detect the partial underlying hardware topology")?;
+    debug!("Isolation-boundaries in underlying hardware topology have been detected successfully");
+    trace!("{:?}", isol);
+    let isol =
+        serde_json::to_string(&full).with_context(|| "failed to serialize partial Topology")?;
+
+    //ActiNode::new("", spec)
+
+    Ok(())
+}
+
+#[tokio::main]
+async fn main() -> Result<()> {
+    tracing_subscriber::fmt()
+        .with_writer(io::stderr)
+        .with_env_filter(EnvFilter::from_default_env())
+        .with_thread_ids(true)
+        .with_span_events(FmtSpan::CLOSE)
+        .try_init()
+        .map_err(|e| anyhow!("Failed to initialize tracing_subscriber: {}", e))?;
+    Environment::read()
+        .and_then(register)
+        .await
+        .with_context(|| "failed to register the new ActiNode")
+}

@@ -1,0 +1,16 @@
+[package]
+name = "immutree"
+version = "0.1.0"
+edition = "2021"
+description = "A simple implementation of a tree container structure, generic over the data stored"
+readme = "README.md"
+authors = ["Christos Katsakioris <ckatsak@gmail.com>"]
+license = "Apache-2.0"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+thiserror = "~1"
+
+[dev-dependencies]
+anyhow = "~1"
+serde_json = "1.0"

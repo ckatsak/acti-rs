@@ -1,0 +1,63 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: actinodes.acti.cslab.ece.ntua.gr
+spec:
+  group: acti.cslab.ece.ntua.gr
+  names:
+    categories: []
+    kind: ActiNode
+    plural: actinodes
+    shortNames:
+      - an
+      - actin
+      - anode
+    singular: actinode
+  scope: Namespaced
+  versions:
+    - additionalPrinterColumns: []
+      name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: "Auto-generated derived type for ActiNodeSpec via `CustomResource`"
+          properties:
+            spec:
+              description: ActiNodeSpec defines the desired state of an ActiNode.
+              properties:
+                assignments:
+                  additionalProperties:
+                    items:
+                      format: uint32
+                      minimum: 0.0
+                      type: integer
+                    type: array
+                  description: "Assignments include the Pods that are executed on the Node related to an ActiNode, along with the OS indices of the cores where each of them is pinned."
+                  type: object
+              required:
+                - assignments
+              type: object
+            status:
+              description: ActiNodeStatus describes the observed state of an ActiNode.
+              nullable: true
+              properties:
+                pinnings:
+                  additionalProperties:
+                    items:
+                      format: uint32
+                      minimum: 0.0
+                      type: integer
+                    type: array
+                  description: "Pinnings include the actual assignments of Pods to physical cores, as observed (and enforced) by ActiK8s' `internal` controller."
+                  type: object
+              required:
+                - pinnings
+              type: object
+          required:
+            - spec
+          title: ActiNode
+          type: object
+      served: true
+      storage: true
+      subresources:
+        status: {}

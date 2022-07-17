@@ -1,0 +1,287 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-ns
+    app.kubernetes.io/instance: acti-ns
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: namespace
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: acti-registrant-sa
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-registrant
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: acti-registrant-sa-secret
+  namespace: acti-ns
+  annotations:
+    kubernetes.io/service-account.name: acti-registrant-sa
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-registrant
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+type: kubernetes.io/service-account-token
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: acti-pinner-sa
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-pinner
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: acti-registrant-role
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-registrant
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+rules:
+- apiGroups:
+  - acti.cslab.ece.ntua.gr
+  resources:
+  - actinodes
+  verbs:
+  - "*"
+#- apiGroups:
+#  - ""
+#  resources:
+#  - nodes
+#  verbs:
+#  - get
+#  - list
+#- apiGroups:
+#  - apiextensions.k8s.io
+#  resources:
+#  - customresourcedefinitions
+#  verbs:
+#  - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: acti-pinner-role
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-pinner
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+rules:
+- apiGroups:
+  - acti.cslab.ece.ntua.gr
+  resources:
+  - actinodes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - acti.cslab.ece.ntua.gr
+  resources:
+  - actinodes/status
+  verbs:
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: acti-registrant-rb
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-registrant
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: acti-registrant-role
+subjects:
+- kind: ServiceAccount
+  name: acti-registrant-sa
+  namespace: acti-ns
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: acti-pinner-rb
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-pinner
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: acti-pinner-role
+subjects:
+- kind: ServiceAccount
+  name: acti-pinner-sa
+  namespace: acti-ns
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: acti-internal
+  namespace: acti-ns
+  labels:
+    app.kubernetes.io/name: acti-internal
+    app.kubernetes.io/instance: acti-internal
+    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/component: internal
+    app.kubernetes.io/part-of: actik8s
+    acti: system
+    tier: internal
+spec:
+  selector:
+    matchLabels:
+      acti: system
+      tier: internal
+  template:
+    metadata:
+      labels:
+        acti: system
+        tier: internal
+    spec:
+      nodeSelector:
+        acti: enabled
+      #affinity:
+      #  nodeAffinity:
+      #    requiredDuringSchedulingIgnoredDuringExecution:
+      #      nodeSelectorTerms:
+      #      - matchExpressions:
+      #        - key: acti
+      #          operator: In
+      #          values:
+      #          - enabled
+      serviceAccountName: acti-pinner-sa
+      terminationGracePeriodSeconds: 15
+      restartPolicy: Always
+      initContainers:
+      - name: acti-registrant
+        #image: 192.168.44.1:4999/ckatsak/acti-registrant:0.1.0
+        #imagePullPolicy: Always
+        image: ckatsak/acti-registrant:0.1.0
+        imagePullPolicy: IfNotPresent
+        command: ["/registrant"]
+        args: ["--mode", "all"]  # 'all' or 'full' or 'partial'
+        env:
+        - name: RUST_LOG
+          value: "error,registrant=trace"
+        - name: ACTI_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ACTI_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        volumeMounts:
+        - name: acti-registrant-secret
+          mountPath: "/var/run/secrets/kubernetes.io/serviceaccount"
+          readOnly: true
+      containers:
+      - name: acti-pinner
+        #image: 192.168.44.1:4999/ckatsak/acti-pinner-go:0.1.0-containerd
+        #imagePullPolicy: Always
+        image: ckatsak/acti-pinner-go:0.1.0-containerd
+        imagePullPolicy: IfNotPresent
+        #securityContext:  # needs RW to host's /sys/fs/cgroup/kubepods.slice/
+        #  privileged: true
+        #  #runAsUser: 0
+        #  #allowPrivilegeEscalation: true
+        env:
+        - name: ACTI_NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: ACTI_NODE_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: spec.nodeName
+        - name: ACTI_POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        volumeMounts:
+        - name: host-cgroup-fs
+          mountPath: /sys/fs/cgroup
+          readOnly: false
+      volumes:
+      - name: acti-registrant-secret
+        secret:
+          secretName: acti-registrant-sa-secret
+          optional: false
+      - name: host-cgroup-fs
+        hostPath:
+          path: /sys/fs/cgroup
+          type: Directory

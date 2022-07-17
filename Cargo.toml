@@ -1,0 +1,13 @@
+[workspace]
+members = [
+	"crates/acticrds",
+	"crates/actitopo",
+	"crates/crdgen",
+	"crates/immutree",
+	"crates/registrant-rs",
+]
+
+[profile.release]
+#opt-level = "z"
+codegen-units = 1
+lto = "fat"

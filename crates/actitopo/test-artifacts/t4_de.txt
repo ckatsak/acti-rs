@@ -1,0 +1,410 @@
+- Node 0: Some(Machine)
+		Parent: (None) None
+		Descendant IDs: [1, 21]
+		Descendants: [Processing(Package(0)), Processing(Package(1))]
+		Ancestor IDs: []
+		Ancestors: []
+		Leaf IDs: [40, 39, 37, 36, 34, 33, 31, 30, 28, 27, 25, 24, 20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4]
+		Leaves: [Processing(Thread(23)), Processing(Thread(11)), Processing(Thread(22)), Processing(Thread(10)), Processing(Thread(21)), Processing(Thread(9)), Processing(Thread(20)), Processing(Thread(8)), Processing(Thread(19)), Processing(Thread(7)), Processing(Thread(18)), Processing(Thread(6)), Processing(Thread(17)), Processing(Thread(5)), Processing(Thread(16)), Processing(Thread(4)), Processing(Thread(15)), Processing(Thread(3)), Processing(Thread(14)), Processing(Thread(2)), Processing(Thread(13)), Processing(Thread(1)), Processing(Thread(12)), Processing(Thread(0))]
+
+
+- Node 1: Some(Processing(Package(0)))
+		Parent: (Some(0)) Some(Machine)
+		Descendant IDs: [2]
+		Descendants: [Processing(NumaNode(0))]
+		Ancestor IDs: [0]
+		Ancestors: [Machine]
+		Leaf IDs: [20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4]
+		Leaves: [Processing(Thread(17)), Processing(Thread(5)), Processing(Thread(16)), Processing(Thread(4)), Processing(Thread(15)), Processing(Thread(3)), Processing(Thread(14)), Processing(Thread(2)), Processing(Thread(13)), Processing(Thread(1)), Processing(Thread(12)), Processing(Thread(0))]
+
+
+- Node 2: Some(Processing(NumaNode(0)))
+		Parent: (Some(1)) Some(Processing(Package(0)))
+		Descendant IDs: [3, 6, 9, 12, 15, 18]
+		Descendants: [Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }]
+		Ancestor IDs: [1, 0]
+		Ancestors: [Processing(Package(0)), Machine]
+		Leaf IDs: [20, 19, 17, 16, 14, 13, 11, 10, 8, 7, 5, 4]
+		Leaves: [Processing(Thread(17)), Processing(Thread(5)), Processing(Thread(16)), Processing(Thread(4)), Processing(Thread(15)), Processing(Thread(3)), Processing(Thread(14)), Processing(Thread(2)), Processing(Thread(13)), Processing(Thread(1)), Processing(Thread(12)), Processing(Thread(0))]
+
+
+- Node 3: Some(Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [4, 5]
+		Descendants: [Processing(Thread(0)), Processing(Thread(12))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [5, 4]
+		Leaves: [Processing(Thread(12)), Processing(Thread(0))]
+
+
+- Node 4: Some(Processing(Thread(0)))
+		Parent: (Some(3)) Some(Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [3, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [4]
+		Leaves: [Processing(Thread(0))]
+
+
+- Node 5: Some(Processing(Thread(12)))
+		Parent: (Some(3)) Some(Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [3, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 0, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [5]
+		Leaves: [Processing(Thread(12))]
+
+
+- Node 6: Some(Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [7, 8]
+		Descendants: [Processing(Thread(1)), Processing(Thread(13))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [8, 7]
+		Leaves: [Processing(Thread(13)), Processing(Thread(1))]
+
+
+- Node 7: Some(Processing(Thread(1)))
+		Parent: (Some(6)) Some(Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [6, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [7]
+		Leaves: [Processing(Thread(1))]
+
+
+- Node 8: Some(Processing(Thread(13)))
+		Parent: (Some(6)) Some(Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [6, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 1, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [8]
+		Leaves: [Processing(Thread(13))]
+
+
+- Node 9: Some(Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [10, 11]
+		Descendants: [Processing(Thread(2)), Processing(Thread(14))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [11, 10]
+		Leaves: [Processing(Thread(14)), Processing(Thread(2))]
+
+
+- Node 10: Some(Processing(Thread(2)))
+		Parent: (Some(9)) Some(Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [9, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [10]
+		Leaves: [Processing(Thread(2))]
+
+
+- Node 11: Some(Processing(Thread(14)))
+		Parent: (Some(9)) Some(Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [9, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 2, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [11]
+		Leaves: [Processing(Thread(14))]
+
+
+- Node 12: Some(Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [13, 14]
+		Descendants: [Processing(Thread(3)), Processing(Thread(15))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [14, 13]
+		Leaves: [Processing(Thread(15)), Processing(Thread(3))]
+
+
+- Node 13: Some(Processing(Thread(3)))
+		Parent: (Some(12)) Some(Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [12, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [13]
+		Leaves: [Processing(Thread(3))]
+
+
+- Node 14: Some(Processing(Thread(15)))
+		Parent: (Some(12)) Some(Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [12, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 3, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [14]
+		Leaves: [Processing(Thread(15))]
+
+
+- Node 15: Some(Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [16, 17]
+		Descendants: [Processing(Thread(4)), Processing(Thread(16))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [17, 16]
+		Leaves: [Processing(Thread(16)), Processing(Thread(4))]
+
+
+- Node 16: Some(Processing(Thread(4)))
+		Parent: (Some(15)) Some(Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [15, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [16]
+		Leaves: [Processing(Thread(4))]
+
+
+- Node 17: Some(Processing(Thread(16)))
+		Parent: (Some(15)) Some(Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [15, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 4, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [17]
+		Leaves: [Processing(Thread(16))]
+
+
+- Node 18: Some(Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(2)) Some(Processing(NumaNode(0)))
+		Descendant IDs: [19, 20]
+		Descendants: [Processing(Thread(5)), Processing(Thread(17))]
+		Ancestor IDs: [2, 1, 0]
+		Ancestors: [Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [20, 19]
+		Leaves: [Processing(Thread(17)), Processing(Thread(5))]
+
+
+- Node 19: Some(Processing(Thread(5)))
+		Parent: (Some(18)) Some(Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [18, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [19]
+		Leaves: [Processing(Thread(5))]
+
+
+- Node 20: Some(Processing(Thread(17)))
+		Parent: (Some(18)) Some(Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [18, 2, 1, 0]
+		Ancestors: [Cache { level: L2, logical_index: 5, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(0)), Processing(Package(0)), Machine]
+		Leaf IDs: [20]
+		Leaves: [Processing(Thread(17))]
+
+
+- Node 21: Some(Processing(Package(1)))
+		Parent: (Some(0)) Some(Machine)
+		Descendant IDs: [22]
+		Descendants: [Processing(NumaNode(1))]
+		Ancestor IDs: [0]
+		Ancestors: [Machine]
+		Leaf IDs: [40, 39, 37, 36, 34, 33, 31, 30, 28, 27, 25, 24]
+		Leaves: [Processing(Thread(23)), Processing(Thread(11)), Processing(Thread(22)), Processing(Thread(10)), Processing(Thread(21)), Processing(Thread(9)), Processing(Thread(20)), Processing(Thread(8)), Processing(Thread(19)), Processing(Thread(7)), Processing(Thread(18)), Processing(Thread(6))]
+
+
+- Node 22: Some(Processing(NumaNode(1)))
+		Parent: (Some(21)) Some(Processing(Package(1)))
+		Descendant IDs: [23, 26, 29, 32, 35, 38]
+		Descendants: [Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }]
+		Ancestor IDs: [21, 0]
+		Ancestors: [Processing(Package(1)), Machine]
+		Leaf IDs: [40, 39, 37, 36, 34, 33, 31, 30, 28, 27, 25, 24]
+		Leaves: [Processing(Thread(23)), Processing(Thread(11)), Processing(Thread(22)), Processing(Thread(10)), Processing(Thread(21)), Processing(Thread(9)), Processing(Thread(20)), Processing(Thread(8)), Processing(Thread(19)), Processing(Thread(7)), Processing(Thread(18)), Processing(Thread(6))]
+
+
+- Node 23: Some(Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [24, 25]
+		Descendants: [Processing(Thread(6)), Processing(Thread(18))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [25, 24]
+		Leaves: [Processing(Thread(18)), Processing(Thread(6))]
+
+
+- Node 24: Some(Processing(Thread(6)))
+		Parent: (Some(23)) Some(Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [23, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [24]
+		Leaves: [Processing(Thread(6))]
+
+
+- Node 25: Some(Processing(Thread(18)))
+		Parent: (Some(23)) Some(Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [23, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 6, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [25]
+		Leaves: [Processing(Thread(18))]
+
+
+- Node 26: Some(Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [27, 28]
+		Descendants: [Processing(Thread(7)), Processing(Thread(19))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [28, 27]
+		Leaves: [Processing(Thread(19)), Processing(Thread(7))]
+
+
+- Node 27: Some(Processing(Thread(7)))
+		Parent: (Some(26)) Some(Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [26, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [27]
+		Leaves: [Processing(Thread(7))]
+
+
+- Node 28: Some(Processing(Thread(19)))
+		Parent: (Some(26)) Some(Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [26, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 7, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [28]
+		Leaves: [Processing(Thread(19))]
+
+
+- Node 29: Some(Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [30, 31]
+		Descendants: [Processing(Thread(8)), Processing(Thread(20))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [31, 30]
+		Leaves: [Processing(Thread(20)), Processing(Thread(8))]
+
+
+- Node 30: Some(Processing(Thread(8)))
+		Parent: (Some(29)) Some(Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [29, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [30]
+		Leaves: [Processing(Thread(8))]
+
+
+- Node 31: Some(Processing(Thread(20)))
+		Parent: (Some(29)) Some(Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [29, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 8, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [31]
+		Leaves: [Processing(Thread(20))]
+
+
+- Node 32: Some(Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [33, 34]
+		Descendants: [Processing(Thread(9)), Processing(Thread(21))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [34, 33]
+		Leaves: [Processing(Thread(21)), Processing(Thread(9))]
+
+
+- Node 33: Some(Processing(Thread(9)))
+		Parent: (Some(32)) Some(Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [32, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [33]
+		Leaves: [Processing(Thread(9))]
+
+
+- Node 34: Some(Processing(Thread(21)))
+		Parent: (Some(32)) Some(Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [32, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 9, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [34]
+		Leaves: [Processing(Thread(21))]
+
+
+- Node 35: Some(Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [36, 37]
+		Descendants: [Processing(Thread(10)), Processing(Thread(22))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [37, 36]
+		Leaves: [Processing(Thread(22)), Processing(Thread(10))]
+
+
+- Node 36: Some(Processing(Thread(10)))
+		Parent: (Some(35)) Some(Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [35, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [36]
+		Leaves: [Processing(Thread(10))]
+
+
+- Node 37: Some(Processing(Thread(22)))
+		Parent: (Some(35)) Some(Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [35, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 10, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [37]
+		Leaves: [Processing(Thread(22))]
+
+
+- Node 38: Some(Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Parent: (Some(22)) Some(Processing(NumaNode(1)))
+		Descendant IDs: [39, 40]
+		Descendants: [Processing(Thread(11)), Processing(Thread(23))]
+		Ancestor IDs: [22, 21, 0]
+		Ancestors: [Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [40, 39]
+		Leaves: [Processing(Thread(23)), Processing(Thread(11))]
+
+
+- Node 39: Some(Processing(Thread(11)))
+		Parent: (Some(38)) Some(Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [38, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [39]
+		Leaves: [Processing(Thread(11))]
+
+
+- Node 40: Some(Processing(Thread(23)))
+		Parent: (Some(38)) Some(Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } })
+		Descendant IDs: []
+		Descendants: []
+		Ancestor IDs: [38, 22, 21, 0]
+		Ancestors: [Cache { level: L2, logical_index: 11, attributes: CacheAttributes { size: 262144, linesize: 64, associativity: 8 } }, Processing(NumaNode(1)), Processing(Package(1)), Machine]
+		Leaf IDs: [40]
+		Leaves: [Processing(Thread(23))]
+
+

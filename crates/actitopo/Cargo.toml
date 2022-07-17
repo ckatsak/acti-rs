@@ -1,0 +1,28 @@
+[package]
+name = "actitopo"
+version = "0.1.0"
+edition = "2021"
+description = "Hierarchical hardware topology representation for the ActiK8s project"
+readme = "README.md"
+authors = ["Christos Katsakioris <ckatsak@gmail.com>"]
+license = "Apache-2.0"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+#futures = "^0.3"
+#kube = { version = "^0.74", default-features = true, features = ["derive"] }
+#k8s-openapi = { version = "^0.15", default-features = false, features = ["v1_24"] }
+#kube-derive = "^0.74"
+#kube-runtime = "^0.74"
+#schemars = "^0.8"
+#tokio = { version = "^1.20", features = ["macros", "rt-multi-thread"] }
+hwloc2 = { git = "https://github.com/ckatsak/libhwloc2-rs", rev = "5eab346" }
+#hwloc2 = { path = "../../../../libhwloc2-rs/hwloc2-rs" }  # dev
+immutree = { version = "0.1.0", path = "../immutree" }
+serde = "1"
+thiserror = "~1"
+
+[dev-dependencies]
+anyhow = "~1"
+serde_json = "1.0"
+#serde_yaml = "~0.8"

@@ -1,0 +1,21 @@
+[package]
+name = "crdgen"
+version = "0.1.0"
+edition = "2021"
+description = "Generate YAML files for the CRDs defined in ActiK8s"
+readme = "README.md"
+authors = ["Christos Katsakioris <ckatsak@gmail.com>"]
+license = "Apache-2.0"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "~1"
+acticrds = { version = "0.1.0", path = "../acticrds" }
+kube = { version = "^0.74", default-features = true, features = ["derive"] }
+kube-derive = "^0.74"
+#kube-runtime = "^0.74"
+#k8s-openapi = { version = "^0.15", default-features = false, features = ["v1_24"] }
+k8s-openapi = { version = "^0.15", default-features = false, features = ["v1_21"] }
+serde = "^1"
+serde_yaml = "^0.8"
+#validator = { version = "^0.15", features = ["derive"] }
